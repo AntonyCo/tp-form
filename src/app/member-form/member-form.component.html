@@ -1,0 +1,121 @@
+<div>
+  <section class="mat-typography">
+      <h1 class="display-1">New Member</h1>
+  </section>
+  <mat-divider></mat-divider>
+  <form (ngSubmit)="handleSubmit()"
+    [formGroup]="memberForm">
+
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput formControlName="lastname" placeholder="Enter your lastname">
+        <mat-error *ngIf="lastnameCtrl.dirty && lastnameCtrl.hasError('pattern')">
+          Lastname should start with an uppercase
+        </mat-error>
+        <mat-error *ngIf="lastnameCtrl.dirty && lastnameCtrl.hasError('required')">
+          Lastname is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- <div>
+      <label>Lastname: </label>
+      <input formControlName="lastname"
+      class="input-angular">
+      <div *ngIf="lastnameCtrl.dirty && lastnameCtrl.hasError('pattern')" class="error">
+        Lastname should start with an uppercase
+      </div>
+      <div *ngIf="lastnameCtrl.dirty && lastnameCtrl.hasError('required')" class="error">
+        Lastname is required
+      </div>
+    </div> -->
+
+    <div class="example-container">
+        <mat-form-field>
+          <input matInput formControlName="firstname" placeholder="Enter your firstname">
+          <mat-error *ngIf="firstnameCtrl.dirty && firstnameCtrl.hasError('required')">
+            Firstname is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    <!-- <div>
+      <label>Firstname: </label>
+      <input formControlName="firstname"
+      class="input-angular">
+      <div *ngIf="firstnameCtrl.dirty && firstnameCtrl.hasError('required')" class="error">
+        Firstname is required
+      </div>
+    </div> -->
+    
+    <div class="example-container">
+        <mat-form-field hintLabel="10 Numbers">
+          <input maxlength="10" matInput formControlName="phoneNumber" placeholder="Enter your phone number">
+          <mat-hint align="end">{{phoneNumberCtrl.value?.length || 0}}/10</mat-hint>
+          <mat-error *ngIf="phoneNumberCtrl.dirty && phoneNumberCtrl.hasError('pattern')">
+            Phone number should be valid
+          </mat-error>
+        </mat-form-field>
+    </div>
+
+    <!-- <div>
+      <label>Phone Number: </label>
+      <input formControlName="phoneNumber"
+      class="input-angular">
+      <div *ngIf="phoneNumberCtrl.dirty && phoneNumberCtrl.hasError('pattern')" class="error">
+        Phone number should be valid
+      </div>
+    </div> -->
+
+    <div class="example-container">
+        <mat-form-field>
+          <input matInput formControlName="email" placeholder="Enter your email">
+          <mat-error *ngIf="emailCtrl.dirty && emailCtrl.hasError('email')">
+            Email field is not valid
+          </mat-error>
+          <mat-error *ngIf="emailCtrl.dirty && emailCtrl.hasError('required')">
+              Email is required
+          </mat-error>
+        </mat-form-field>
+    </div>
+
+      <!-- <div>
+        <label>Email: </label>
+        <input formControlName="email"
+        class="input-angular">
+        <div *ngIf="emailCtrl.dirty && emailCtrl.hasError('email')" class="error">
+          Email field is not valid
+        </div>
+        <div *ngIf="emailCtrl.dirty && emailCtrl.hasError('required')" class="error">
+          Email is required
+        </div>
+      </div> -->
+
+  <div class="example-container">
+  <mat-form-field>
+    <mat-select placeholder="Knowledge" formControlName="knowledge">
+      <mat-option *ngFor="let know of knowledgeList" [value]="know">
+        {{know}}
+      </mat-option>
+    </mat-select>
+    <mat-error  *ngIf="knowledgeCtrl.hasError('minlength')">
+      A knowledge is required
+    </mat-error>
+  </mat-form-field>
+  </div>
+    <!-- <div>
+      <label>Knowledge: </label>
+      <select formControlName="knowledge">
+        <option *ngFor="let know of knowledgeList" [value]="know">{{know}}</option>
+      </select>
+      <div *ngIf="knowledgeCtrl.hasError('minlength')">
+        A knowledge is required
+      </div>
+    </div> -->
+    <div class="example-container">
+      <button mat-stroked-button color="primary" type="submit" [disabled]="memberForm.invalid">Submit</button>
+      <br/>
+      <button mat-stroked-button color="warn" type="reset" (click)="handleClear()">Clear</button>
+    </div>
+  </form>
+</div>
